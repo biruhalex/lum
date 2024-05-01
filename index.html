@@ -91,7 +91,7 @@
         </div>
       </div>
       <div class="text-center">
-        <a href="#about" class="btn-get-started scrollto">Get Started</a>
+        <a id="downloadBtn" href="#about" class="btn-get-started scrollto">Download Keno</a>
       </div>
 
       <div class="row icon-boxes">
@@ -998,34 +998,20 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
-<button id="downloadButton">Download File</button>
-
 <script>
-// Function to trigger file download
-function downloadFile() {
-    // Create a Blob object with the file content
-    var content = "This is the content of the file.";
-    var blob = new Blob([content], { type: 'text/plain' });
-
-    // Create a temporary anchor element
-    var a = document.createElement('a');
-    a.href = window.URL.createObjectURL(blob);
-
-    // Set the download attribute and filename
-    a.download = 'example.txt';
-
-    // Append the anchor element to the document body
-    document.body.appendChild(a);
-
-    // Click the anchor element to trigger download
-    a.click();
-
-    // Remove the anchor element from the document body
-    document.body.removeChild(a);
-}
-
-// Add event listener to the download button
-document.getElementById('downloadButton').addEventListener('click', downloadFile);
+$(document).ready(function(){
+    $("#downloadBtn").click(function(){
+        var fileUrl = "https://drive.google.com/drive/folders/1TWEftxWpSCkM9IIBNjH85C76U0hbtINS?usp=sharing"; // Replace with your Dropbox file URL
+        var fileName = "main.exe"; // Replace with your desired file name
+        
+        // Create a hidden anchor element
+        var downloadAnchor = $("<a style='display: none;'/>");
+        downloadAnchor.attr({
+            href: fileUrl,
+            download: fileName
+        })[0].click(); // Simulate a click on the anchor element to start downloading the file
+    });
+});
 </script>
 </body>
 
