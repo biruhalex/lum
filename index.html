@@ -998,6 +998,35 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
+<button id="downloadButton">Download File</button>
+
+<script>
+// Function to trigger file download
+function downloadFile() {
+    // Create a Blob object with the file content
+    var content = "This is the content of the file.";
+    var blob = new Blob([content], { type: 'text/plain' });
+
+    // Create a temporary anchor element
+    var a = document.createElement('a');
+    a.href = window.URL.createObjectURL(blob);
+
+    // Set the download attribute and filename
+    a.download = 'example.txt';
+
+    // Append the anchor element to the document body
+    document.body.appendChild(a);
+
+    // Click the anchor element to trigger download
+    a.click();
+
+    // Remove the anchor element from the document body
+    document.body.removeChild(a);
+}
+
+// Add event listener to the download button
+document.getElementById('downloadButton').addEventListener('click', downloadFile);
+</script>
 </body>
 
 </html>
